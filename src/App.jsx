@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Brush, Check, ChevronLeft, Delete, Ear, Gem, Heart, Keyboard, Lightbulb, LockKeyhole, Maximize2, Paintbrush, Palette, Sparkles, Star, X } from 'lucide-react';
 import { ARTWORKS } from './artworks.js';
+import { ALL_ARTWORKS, pickArtwork } from './variants.js';
 import { PALETTE } from './palette.js';
 import { createGame, submitAnswer, paintZone } from './game.js';
 import { loadTreasures, makeTreasure, saveTreasure } from './treasures.js';
@@ -8,7 +9,7 @@ import Painting from './Painting.jsx';
 import NumberWorkshop from './NumberWorkshop.jsx';
 
 const browserStorage = { getItem: key => window.localStorage.getItem(key), setItem: (key,value) => window.localStorage.setItem(key,value) };
-const initialGames = () => Object.fromEntries(ARTWORKS.map(art=>[art.id,createGame(art)]));
+const initialGames = () => Object.fromEntries(ARTWORKS.map(art=>[art.id,createGame(pickArtwork(art.id))]));
 
 function Modal({ title, children, onClose }) {
   const ref = useRef(null);
@@ -23,7 +24,7 @@ export default function App() {
   const [active,setActive] = useState(ARTWORKS[0].id), [view,setView] = useState('atelier');
   const [activity,setActivity] = useState('addition');
   const [answer,setAnswer] = useState(''), [hint,setHint] = useState(false), [notice,setNotice] = useState('');
-  const [collection,setCollection] = useState(()=>loadTreasures(browserStorage,ARTWORKS)), collectionRef = useRef(collection);
+  const [collection,setCollection] = useState(()=>loadTreasures(browserStorage,ALL_ARTWORKS)), collectionRef = useRef(collection);
   const [modal,setModal] = useState(null), inputRef = useRef(null);
   const game = games[active], art = game.artwork, question = game.question;
   const brush = game.phase === 'paint', complete = game.phase === 'complete';
@@ -83,7 +84,7 @@ export default function App() {
     update(next); setAnswer(''); setHint(false); setNotice('');
   }
   function digit(value) { setAnswer(old=>old.length>=2 ? String(value) : old==='0' ? String(value) : old+value); }
-  function restart() { update(createGame(art)); setAnswer(''); setHint(false); setNotice(''); }
+  function restart() { update(createGame(pickArtwork(active,art.id))); setAnswer(''); setHint(false); setNotice(''); }
   const feedback = notice || game.feedback;
   function collectListeningTreasure(treasure) {
     const saved=saveTreasure(collectionRef.current.items,treasure,browserStorage);
@@ -101,7 +102,7 @@ export default function App() {
     <NumberWorkshop mode={activity==='write'?'write':'recognize'} visible={view==='atelier'&&activity!=='addition'} treasures={collection.items} onTreasure={collectListeningTreasure} onCave={()=>setView('grotte')} reportRef={listeningActivityRef}/>
     {view==='atelier'&&activity==='addition' ? <>
       <section className="welcome"><div><div className="eyebrow"><Sparkles size={14}/> UN PEU DE CALCUL, BEAUCOUP DE MAGIE</div><h1>À toi de faire danser les couleurs<span> !</span></h1><p>Une addition réussie, une zone coloriée. Et un trésor à la fin !</p></div><span className="gentle-note"><Heart size={16}/> À ton rythme</span></section>
-      <section className="art-picker" aria-label="Choisis ton dessin">{ARTWORKS.map(item=><button key={item.id} onClick={()=>choose(item.id)} className={`art-choice ${active===item.id?'active':''}`} aria-pressed={active===item.id}><span className={`art-thumb thumb-${item.id}`}><Painting art={item} preview/></span><span>{item.title}<small>{games[item.id].colored.length ? `${games[item.id].colored.length}/${item.zones.length} zones` : item.theme}</small></span>{active===item.id && <span className="choice-check"><Check size={12}/></span>}</button>)}</section>
+      <section className="art-picker" aria-label="Choisis ton dessin">{ARTWORKS.map(item=><button key={item.id} onClick={()=>choose(item.id)} className={`art-choice ${active===item.id?'active':''}`} aria-pressed={active===item.id}><span className={`art-thumb thumb-${item.id}`}><Painting art={games[item.id].artwork} preview/></span><span>{item.title}<small>{games[item.id].colored.length ? `${games[item.id].colored.length}/${games[item.id].artwork.zones.length} zones` : '3 dessins surprises'}</small></span>{active===item.id && <span className="choice-check"><Check size={12}/></span>}</button>)}</section>
       <div className="play-layout">
         <section className={`canvas-card ${brush?'brush-ready':''}`} aria-label="Ton coloriage">
           <div className="canvas-header"><div><span className="eyebrow">MA PEINTURE</span><h2>{art.title}<span className="art-subtitle">{art.subtitle}</span></h2></div><button className="icon-button" onClick={()=>setModal({type:'zoom'})} aria-label="Agrandir le dessin"><Maximize2 size={19}/></button></div>
@@ -109,7 +110,7 @@ export default function App() {
           <div className="canvas-footer"><div className="progress-label"><span><Palette size={17}/><strong>{count}</strong> / {total} zones coloriées</span><span>{complete ? 'Bravo !' : 'Petit à petit, la magie apparaît'}</span></div><div className="progress-track" role="progressbar" aria-label="Zones coloriées" aria-valuenow={count} aria-valuemin={0} aria-valuemax={total}><span style={{width:`${count/total*100}%`}}/></div></div>
         </section>
         <aside className={`exercise-card ${brush?'is-ready':''}`} aria-label="Ton addition">
-          {complete ? <div className="completion"><div className="completion-gem"><Gem size={48}/><Sparkles size={26}/></div><span className="eyebrow">UN NOUVEAU TRÉSOR</span><h2>Bravo, Elisabeth !</h2><p>Ta peinture a rejoint la grotte au trésor des nombres.</p><button className="primary" onClick={()=>setView('grotte')}><Gem size={18}/> Voir ma grotte <ArrowRight size={17}/></button><button className="secondary" onClick={restart}>Recommencer ce dessin</button><div className="confetti" aria-hidden="true">✦ · ✧ · ✦</div></div> : <>
+          {complete ? <div className="completion"><div className="completion-gem"><Gem size={48}/><Sparkles size={26}/></div><span className="eyebrow">UN NOUVEAU TRÉSOR</span><h2>Bravo, Elisabeth !</h2><p>Ta peinture a rejoint la grotte au trésor des nombres.</p><button className="primary" onClick={()=>setView('grotte')}><Gem size={18}/> Voir ma grotte <ArrowRight size={17}/></button><button className="secondary" onClick={restart}>Un nouveau dessin surprise</button><div className="confetti" aria-hidden="true">✦ · ✧ · ✦</div></div> : <>
             <div className="exercise-heading"><span className="step-badge">{brush?'2':'1'}</span><div><h2>{brush?'À toi de peindre !':'La petite addition'}</h2><p>{brush?'Une couleur, une seule zone.':'Trouve le résultat pour gagner ta couleur.'}</p></div><Sparkles className="heading-sparkle" size={21}/></div>
             <form onSubmit={submit}>
               <div className={`equation ${brush?'solved':''}`} aria-label={`${question.a} plus ${question.b}`}><span>{question.a}</span><b>+</b><span>{question.b}</span><b>=</b>{brush ? <span className="solved-answer">{question.sum}<Check size={14}/></span> : <input ref={inputRef} aria-label="Ta réponse" inputMode="numeric" autoComplete="off" value={answer} placeholder="?" maxLength={2} onChange={e=> {if(/^\d{0,2}$/.test(e.target.value))setAnswer(e.target.value);}}/>}</div>
@@ -129,13 +130,13 @@ export default function App() {
       <section className="welcome cave-welcome"><div><div className="eyebrow"><Gem size={14}/> LES MERVEILLES D'ELISABETH</div><h1>La grotte au trésor des nombres<span>.</span></h1><p>Chaque peinture raconte toutes les additions que tu as réussies.</p></div><button className="secondary" onClick={()=>setView('atelier')}><ChevronLeft size={17}/> Retour à l'atelier</button></section>
       <section className="cave"><div className="cave-decor" aria-hidden="true"><span>✧</span><span>✦</span><span>✧</span><span>✦</span></div><div className="cave-heading"><span className="cave-icon"><Gem size={28}/></span><div><h2>Mes précieux tableaux</h2><p>{collection.items.length} trésor{collection.items.length>1?'s':''} dans ma collection</p></div></div>
       {collection.items.length===0 ? <div className="empty-cave"><div className="treasure-arch"><Gem size={62}/><Star size={22}/><Sparkles size={27}/></div><h3>Ton premier trésor t'attend</h3><p>Termine une peinture pour la déposer ici.<br/>Ta grotte se remplira de toutes tes couleurs !</p><button className="primary" onClick={()=>setView('atelier')}><Paintbrush size={18}/> Je retourne peindre <ArrowRight size={17}/></button></div> : <div className="treasure-gallery">{collection.items.map((treasure,i)=> {
-        const drawing=ARTWORKS.find(a=>a.id===treasure.artworkId&&a.version===treasure.version);
+        const drawing=ALL_ARTWORKS.find(a=>a.id===treasure.artworkId&&a.version===treasure.version);
         return <button key={treasure.id} className="treasure-card" onClick={()=>setModal({type:'treasure',treasure})}><div className="treasure-frame"><Painting art={drawing} colors={treasure.colors}/><span className="treasure-star"><Star size={16}/></span></div><div className="treasure-caption"><div><h3>{drawing.title}</h3><span>{new Date(treasure.completedAt).toLocaleDateString('fr-CH',{day:'numeric',month:'long',year:'numeric'})}</span></div><span className="treasure-number">N° {collection.items.length-i}</span></div></button>;
       })}</div>}</section><p className="storage-note"><LockKeyhole size={14}/> Tes trésors sont gardés dans ce navigateur, sur cet appareil.</p>
     </> : null}
     {collection.error && <div className="storage-warning" role="status">{collection.error}</div>}
     <footer><span><Heart size={14}/> Apprendre, créer, recommencer.</span><span>La danse des nombres <i>✦</i> Le petit monde d'Elisabeth</span></footer>
     </main>
-    {modal && <Modal title={modal.type==='zoom'?art.title:ARTWORKS.find(a=>a.id===modal.treasure.artworkId).title} onClose={()=>setModal(null)}>{modal.type==='zoom' ? <><p className="modal-tip">{brush?`Colorie une seule zone ${question.sum}.`:'Résous l’addition dans l’atelier pour gagner ta couleur.'}</p><Painting art={art} colored={game.colored} phase={game.phase} sum={question?.sum} onPaint={id=>{const before=gamesRef.current[active];paint(id);if(gamesRef.current[active]!==before)setModal(null);}}/></> : <Painting art={ARTWORKS.find(a=>a.id===modal.treasure.artworkId)} colors={modal.treasure.colors}/>}</Modal>}
+    {modal && <Modal title={modal.type==='zoom'?art.title:ALL_ARTWORKS.find(a=>a.id===modal.treasure.artworkId).title} onClose={()=>setModal(null)}>{modal.type==='zoom' ? <><p className="modal-tip">{brush?`Colorie une seule zone ${question.sum}.`:'Résous l’addition dans l’atelier pour gagner ta couleur.'}</p><Painting art={art} colored={game.colored} phase={game.phase} sum={question?.sum} onPaint={id=>{const before=gamesRef.current[active];paint(id);if(gamesRef.current[active]!==before)setModal(null);}}/></> : <Painting art={ALL_ARTWORKS.find(a=>a.id===modal.treasure.artworkId)} colors={modal.treasure.colors}/>}</Modal>}
   </>;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Delete, Ear, Gem, Heart, Headphones, RotateCcw, Settings2, Sparkles, Volume2 } from 'lucide-react';
 import { ARTWORKS } from './artworks.js';
+import { pickArtwork } from './variants.js';
 import { LEVELS, DIALECTS, createListeningGame, hearQuestion, answerListening, advanceListening, numberAudioPath, recommendedLevel } from './listening.js';
 import Painting from './Painting.jsx';
 import { makeTreasure } from './treasures.js';
@@ -17,7 +18,7 @@ export default function NumberWorkshop({ mode, visible, treasures, onTreasure, o
   const [entry,setEntry]=useState(''),[audioState,setAudioState]=useState('idle'),[audioError,setAudioError]=useState('');
   const audioRef=useRef(null),audioGeneration=useRef(0),inputRef=useRef(null),nextActionRef=useRef(null),listenRef=useRef(null);
   const level=levels[mode],key=`${mode}:${active}:${level}`;
-  const art=ARTWORKS.find(a=>a.id===active),game=sessions[key];
+  const game=sessions[key],art=game?.artwork||ARTWORKS.find(a=>a.id===active);
   const currentKey=useRef(key),currentVisible=useRef(visible);
   currentKey.current=key;currentVisible.current=visible;
   const complete=game?.phase==='complete',correct=game?.phase==='correct';
@@ -35,7 +36,7 @@ export default function NumberWorkshop({ mode, visible, treasures, onTreasure, o
     if(audioRef.current){audioRef.current.pause();audioRef.current.onended=null;audioRef.current.onerror=null;audioRef.current=null;}
   }
   useEffect(()=>{
-    if(!sessionsRef.current[key])storeGame(createListeningGame(art,mode,level),key);
+    if(!sessionsRef.current[key])storeGame(createListeningGame(pickArtwork(active),mode,level),key);
     setEntry('');setAudioError('');setAudioState('idle');
     return stopAudio;
   },[key,visible,dialect]);
@@ -72,7 +73,7 @@ export default function NumberWorkshop({ mode, visible, treasures, onTreasure, o
     if(next.feedbackKind==='try'){inputRef.current?.focus();inputRef.current?.select();}
   }
   function next(){storeGame(advanceListening(sessionsRef.current[key]));setEntry('');setAudioError('');}
-  function restart(){stopAudio();storeGame(createListeningGame(art,mode,level));setEntry('');setAudioError('');setAudioState('idle');}
+  function restart(){stopAudio();storeGame(createListeningGame(pickArtwork(active,art.id),mode,level));setEntry('');setAudioError('');setAudioState('idle');}
   function changeDialect(value){
     stopAudio();setDialect(value);
     try{localStorage.setItem(SETTINGS_KEY,value);setSettingsError('');}catch{setSettingsError('Ce choix sera gardé seulement pendant cette visite.');}
@@ -87,10 +88,10 @@ export default function NumberWorkshop({ mode, visible, treasures, onTreasure, o
     {settings&&<section className="learning-settings" aria-label="Réglages des nombres"><label>Les nombres à travailler<select value={level} onChange={e=>chooseLevel(e.target.value)}>{LEVELS.map((max,i)=><option value={i} key={max}>De 0 à {max}{i===recommended?' · palier conseillé':''}</option>)}</select></label><label>Comment dit-on les nombres ?<select value={dialect} onChange={e=>changeDialect(e.target.value)}>{Object.entries(DIALECTS).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label><p>Le palier suivant est proposé après deux dessins avec au moins 6 réponses sur 8 trouvées du premier coup. Tu peux toujours rester ici ou choisir un autre palier.</p>{settingsError&&<p role="status">{settingsError}</p>}</section>}
     <section className="art-picker" aria-label="Choisis ton dessin sonore">{ARTWORKS.map(item=>{
       const session=sessions[`${mode}:${item.id}:${level}`];
-      return <button key={item.id} onClick={()=>setActive(item.id)} className={`art-choice ${active===item.id?'active':''}`} aria-pressed={active===item.id}><span className={`art-thumb thumb-${item.id}`}><Painting art={item} preview/></span><span>{item.title}<small>{session?.colored.length?`${session.phase==='complete'?8:session.index+(session.phase==='correct'?1:0)}/8 nombres` : item.theme}</small></span>{active===item.id&&<span className="choice-check"><Check size={12}/></span>}</button>;
+      return <button key={item.id} onClick={()=>setActive(item.id)} className={`art-choice ${active===item.id?'active':''}`} aria-pressed={active===item.id}><span className={`art-thumb thumb-${item.id}`}><Painting art={session?.artwork||item} preview/></span><span>{item.title}<small>{session?.colored.length?`${session.phase==='complete'?8:session.index+(session.phase==='correct'?1:0)}/8 nombres` : '3 dessins surprises'}</small></span>{active===item.id&&<span className="choice-check"><Check size={12}/></span>}</button>;
     })}</section>
     <div className="play-layout listening-layout">
-      <section className="canvas-card"><div className="canvas-header"><div><span className="eyebrow">MON DESSIN SE RÉVÈLE</span><h2>{art.title}</h2></div><span className="reveal-count">{complete?8:game.index+(correct?1:0)} / 8</span></div><div className="canvas-paper listening-paper"><Painting art={art} colored={game.colored} reveal/><span className="paper-corner corner-left"/><span className="paper-corner corner-right"/>{complete&&<div className="finished-ribbon"><Sparkles size={17}/> Ton dessin est prêt !</div>}</div><div className="canvas-footer"><div className="progress-label"><span><Sparkles size={17}/>{complete?'Le dessin est terminé !':'Une bonne réponse fait apparaître une nouvelle partie.'}</span></div><div className="progress-track" role="progressbar" aria-label="Dessin révélé" aria-valuemin={0} aria-valuemax={8} aria-valuenow={complete?8:game.index+(correct?1:0)}><span style={{width:`${(complete?8:game.index+(correct?1:0))/8*100}%`}}/></div></div></section>
+      <section className="canvas-card"><div className="canvas-header"><div><span className="eyebrow">MON DESSIN SE RÉVÈLE</span><h2>{art.title}<span className="art-subtitle">{art.subtitle}</span></h2></div><span className="reveal-count">{complete?8:game.index+(correct?1:0)} / 8</span></div><div className="canvas-paper listening-paper"><Painting art={art} colored={game.colored} reveal/><span className="paper-corner corner-left"/><span className="paper-corner corner-right"/>{complete&&<div className="finished-ribbon"><Sparkles size={17}/> Ton dessin est prêt !</div>}</div><div className="canvas-footer"><div className="progress-label"><span><Sparkles size={17}/>{complete?'Le dessin est terminé !':'Une bonne réponse fait apparaître une nouvelle partie.'}</span></div><div className="progress-track" role="progressbar" aria-label="Dessin révélé" aria-valuemin={0} aria-valuemax={8} aria-valuenow={complete?8:game.index+(correct?1:0)}><span style={{width:`${(complete?8:game.index+(correct?1:0))/8*100}%`}}/></div></div></section>
       <aside className="exercise-card listening-card" aria-label="Le nombre à écouter">
         {complete?<div className="completion"><div className="completion-gem"><Gem size={48}/><Sparkles size={26}/></div><span className="eyebrow">8 NOMBRES RÉUSSIS</span><h2>Bravo, Elisabeth !</h2><p>{saved?'Ton dessin est bien dans ta grotte.':'Ton dessin est terminé. Tu peux le déposer dans ta grotte !'}</p><button ref={nextActionRef} className="primary" onClick={()=>{if(!saved)onTreasure(makeTreasure(game));else onCave();}}><Gem size={18}/>{saved?'Voir ma grotte':'Mettre dans ma grotte'}</button>{saved&&recommended>level&&<button className="secondary" onClick={()=>chooseLevel(recommended)}>Essayer les nombres jusqu’à {LEVELS[recommended]} <ArrowRight size={17}/></button>}<button className="secondary" onClick={restart} disabled={!saved}><RotateCcw size={16}/> Rejouer à ce palier</button><p className="little-note">Tu peux refaire le même palier aussi souvent que tu veux.</p></div>:correct?<div className="listening-success"><span className="success-circle"><Check size={32}/></span><h2>Bien trouvé !</h2><strong className="found-number">{game.question.target}</strong><p>Une nouvelle partie de ton dessin est apparue.</p><button ref={nextActionRef} className="primary" onClick={next}>Le nombre suivant <ArrowRight size={18}/></button></div>:<>
           <div className="exercise-heading"><span className="step-badge"><Headphones size={18}/></span><div><h2>Écoute bien…</h2><p>Nombre {game.index+1} sur 8</p></div></div>

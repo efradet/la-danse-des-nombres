@@ -96,3 +96,18 @@ test('success is announced and focus moves to the next question control',async()
   assert.equal(document.activeElement,button('Le nombre suivant',workshop()));
 });
 
+
+test('surprise drawing stays fixed during navigation, replays differently and preserves the saved geometry',async()=>{
+  await clickText('J’écoute et je choisis');
+  const shape=()=>[...workshop().querySelectorAll('.canvas-paper svg path')].map(p=>p.getAttribute('d')).join('|');
+  const original=shape();
+  await clickText('La licorne',workshop());await clickText('La sirène',workshop());
+  assert.equal(shape(),original);
+  for(let i=0;i<8;i++){await answerOption(await hear());if(i<7)await clickText('Le nombre suivant',workshop());}
+  await clickText('Mettre dans ma grotte',workshop());
+  await clickText('Rejouer à ce palier',workshop());assert.notEqual(shape(),original);
+  await clickText('Ma grotte');
+  const saved=[...document.querySelector('.treasure-frame svg').querySelectorAll('path')].map(p=>p.getAttribute('d')).join('|');
+  assert.equal(saved,original);
+});
+

@@ -1,6 +1,6 @@
 # La danse des nombres
 
-Jeu React indépendant pour Elisabeth : trois activités, cinq dessins et une grotte au trésor des nombres. Les illustrations SVG de sirène, licorne, château, princesse et dragon sont originales et interactives.
+Jeu React indépendant pour Elisabeth : trois activités, quinze dessins et une grotte au trésor des nombres. Les illustrations SVG de sirène, licorne, château, princesse et dragon sont originales et interactives.
 
 ## Les deux jeux de nombres entendus
 
@@ -27,7 +27,7 @@ Ouvrir http://localhost:5183/ et garder le serveur ouvert. Node.js 22.12+ (ou 20
 
 ## Règles
 
-- Choisir librement l'un des cinq dessins. Les parties en cours restent disponibles quand on change de dessin ou visite la grotte.
+- Choisir librement l'un des cinq thèmes. Les parties en cours restent disponibles quand on change de dessin ou visite la grotte.
 - Saisir la somme (de 1 à 18) au clavier ou avec les boutons, puis valider. Un indice facultatif montre des points à compter.
 - Une erreur n'autorise aucun coloriage. On peut réessayer sans pénalité ni chronomètre.
 - Une bonne réponse donne exactement un pinceau pour une zone blanche portant ce nombre. Les autres zones ne consomment pas le pinceau. La palette est une légende, pas un moyen de contourner les additions.
@@ -42,7 +42,7 @@ Si le stockage est bloqué, corrompu ou plein, un message le signale ; le jeu re
 
 ## Structure et vérification
 
-`src/game.js` contient le moteur à états ; `src/artworks.js` les cinq dessins versionnés ; `src/palette.js` les couleurs ; `src/treasures.js` la sauvegarde validée ; `src/Painting.jsx` le rendu SVG ; `src/App.jsx` l'atelier et la grotte.
+`src/game.js` contient le moteur à états ; `src/artworks.js` les cinq dessins originaux versionnés ; `src/variants.js` les dix variantes et leur tirage ; `src/palette.js` les couleurs ; `src/treasures.js` la sauvegarde validée ; `src/Painting.jsx` le rendu SVG ; `src/App.jsx` l'atelier et la grotte.
 
 ```sh
 npm test
@@ -50,3 +50,7 @@ npm run build
 ```
 
 Les tests couvrent le verrouillage, les saisies invalides, les doubles actions, les sommes jusqu'à 18, la fin des cinq tableaux, les doublons de trésors, les couleurs conservées et les erreurs de stockage. Les jeux d'écoute ajoutent des tests du tirage 0–100, des quatre choix, des variantes de prononciation, des fichiers MP3, de la progression et des événements audio périmés. Des tests React isolés avec jsdom vérifient le pavé, les erreurs, une partie complète, l'ajout à la grotte, la conservation après remontage, la navigation et le focus clavier. Ils simulent la fin de lecture audio ; ils ne certifient pas le rendu sonore ou visuel d'un navigateur réel.
+
+## Dessins surprises
+
+Chaque thème propose trois dessins différents, soit quinze tableaux dans les trois jeux. Un dessin est tiré au hasard au début de chaque partie. Rejouer propose une autre variante du même thème, sans répétition immédiate. Naviguer conserve le dessin et la progression en cours. La grotte retrouve la version exacte, y compris les anciens tableaux.
