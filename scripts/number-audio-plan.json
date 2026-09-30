@@ -1,0 +1,646 @@
+[
+  {
+    "file": "public/audio/numbers/common/0.mp3",
+    "text": "zéro"
+  },
+  {
+    "file": "public/audio/numbers/common/1.mp3",
+    "text": "un"
+  },
+  {
+    "file": "public/audio/numbers/common/2.mp3",
+    "text": "deux"
+  },
+  {
+    "file": "public/audio/numbers/common/3.mp3",
+    "text": "trois"
+  },
+  {
+    "file": "public/audio/numbers/common/4.mp3",
+    "text": "quatre"
+  },
+  {
+    "file": "public/audio/numbers/common/5.mp3",
+    "text": "cinq"
+  },
+  {
+    "file": "public/audio/numbers/common/6.mp3",
+    "text": "six"
+  },
+  {
+    "file": "public/audio/numbers/common/7.mp3",
+    "text": "sept"
+  },
+  {
+    "file": "public/audio/numbers/common/8.mp3",
+    "text": "huit"
+  },
+  {
+    "file": "public/audio/numbers/common/9.mp3",
+    "text": "neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/10.mp3",
+    "text": "dix"
+  },
+  {
+    "file": "public/audio/numbers/common/11.mp3",
+    "text": "onze"
+  },
+  {
+    "file": "public/audio/numbers/common/12.mp3",
+    "text": "douze"
+  },
+  {
+    "file": "public/audio/numbers/common/13.mp3",
+    "text": "treize"
+  },
+  {
+    "file": "public/audio/numbers/common/14.mp3",
+    "text": "quatorze"
+  },
+  {
+    "file": "public/audio/numbers/common/15.mp3",
+    "text": "quinze"
+  },
+  {
+    "file": "public/audio/numbers/common/16.mp3",
+    "text": "seize"
+  },
+  {
+    "file": "public/audio/numbers/common/17.mp3",
+    "text": "dix-sept"
+  },
+  {
+    "file": "public/audio/numbers/common/18.mp3",
+    "text": "dix-huit"
+  },
+  {
+    "file": "public/audio/numbers/common/19.mp3",
+    "text": "dix-neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/20.mp3",
+    "text": "vingt"
+  },
+  {
+    "file": "public/audio/numbers/common/21.mp3",
+    "text": "vingt et un"
+  },
+  {
+    "file": "public/audio/numbers/common/22.mp3",
+    "text": "vingt-deux"
+  },
+  {
+    "file": "public/audio/numbers/common/23.mp3",
+    "text": "vingt-trois"
+  },
+  {
+    "file": "public/audio/numbers/common/24.mp3",
+    "text": "vingt-quatre"
+  },
+  {
+    "file": "public/audio/numbers/common/25.mp3",
+    "text": "vingt-cinq"
+  },
+  {
+    "file": "public/audio/numbers/common/26.mp3",
+    "text": "vingt-six"
+  },
+  {
+    "file": "public/audio/numbers/common/27.mp3",
+    "text": "vingt-sept"
+  },
+  {
+    "file": "public/audio/numbers/common/28.mp3",
+    "text": "vingt-huit"
+  },
+  {
+    "file": "public/audio/numbers/common/29.mp3",
+    "text": "vingt-neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/30.mp3",
+    "text": "trente"
+  },
+  {
+    "file": "public/audio/numbers/common/31.mp3",
+    "text": "trente et un"
+  },
+  {
+    "file": "public/audio/numbers/common/32.mp3",
+    "text": "trente-deux"
+  },
+  {
+    "file": "public/audio/numbers/common/33.mp3",
+    "text": "trente-trois"
+  },
+  {
+    "file": "public/audio/numbers/common/34.mp3",
+    "text": "trente-quatre"
+  },
+  {
+    "file": "public/audio/numbers/common/35.mp3",
+    "text": "trente-cinq"
+  },
+  {
+    "file": "public/audio/numbers/common/36.mp3",
+    "text": "trente-six"
+  },
+  {
+    "file": "public/audio/numbers/common/37.mp3",
+    "text": "trente-sept"
+  },
+  {
+    "file": "public/audio/numbers/common/38.mp3",
+    "text": "trente-huit"
+  },
+  {
+    "file": "public/audio/numbers/common/39.mp3",
+    "text": "trente-neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/40.mp3",
+    "text": "quarante"
+  },
+  {
+    "file": "public/audio/numbers/common/41.mp3",
+    "text": "quarante et un"
+  },
+  {
+    "file": "public/audio/numbers/common/42.mp3",
+    "text": "quarante-deux"
+  },
+  {
+    "file": "public/audio/numbers/common/43.mp3",
+    "text": "quarante-trois"
+  },
+  {
+    "file": "public/audio/numbers/common/44.mp3",
+    "text": "quarante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/common/45.mp3",
+    "text": "quarante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/common/46.mp3",
+    "text": "quarante-six"
+  },
+  {
+    "file": "public/audio/numbers/common/47.mp3",
+    "text": "quarante-sept"
+  },
+  {
+    "file": "public/audio/numbers/common/48.mp3",
+    "text": "quarante-huit"
+  },
+  {
+    "file": "public/audio/numbers/common/49.mp3",
+    "text": "quarante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/50.mp3",
+    "text": "cinquante"
+  },
+  {
+    "file": "public/audio/numbers/common/51.mp3",
+    "text": "cinquante et un"
+  },
+  {
+    "file": "public/audio/numbers/common/52.mp3",
+    "text": "cinquante-deux"
+  },
+  {
+    "file": "public/audio/numbers/common/53.mp3",
+    "text": "cinquante-trois"
+  },
+  {
+    "file": "public/audio/numbers/common/54.mp3",
+    "text": "cinquante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/common/55.mp3",
+    "text": "cinquante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/common/56.mp3",
+    "text": "cinquante-six"
+  },
+  {
+    "file": "public/audio/numbers/common/57.mp3",
+    "text": "cinquante-sept"
+  },
+  {
+    "file": "public/audio/numbers/common/58.mp3",
+    "text": "cinquante-huit"
+  },
+  {
+    "file": "public/audio/numbers/common/59.mp3",
+    "text": "cinquante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/60.mp3",
+    "text": "soixante"
+  },
+  {
+    "file": "public/audio/numbers/common/61.mp3",
+    "text": "soixante et un"
+  },
+  {
+    "file": "public/audio/numbers/common/62.mp3",
+    "text": "soixante-deux"
+  },
+  {
+    "file": "public/audio/numbers/common/63.mp3",
+    "text": "soixante-trois"
+  },
+  {
+    "file": "public/audio/numbers/common/64.mp3",
+    "text": "soixante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/common/65.mp3",
+    "text": "soixante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/common/66.mp3",
+    "text": "soixante-six"
+  },
+  {
+    "file": "public/audio/numbers/common/67.mp3",
+    "text": "soixante-sept"
+  },
+  {
+    "file": "public/audio/numbers/common/68.mp3",
+    "text": "soixante-huit"
+  },
+  {
+    "file": "public/audio/numbers/common/69.mp3",
+    "text": "soixante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/ch/70.mp3",
+    "text": "septante"
+  },
+  {
+    "file": "public/audio/numbers/ch/71.mp3",
+    "text": "septante et un"
+  },
+  {
+    "file": "public/audio/numbers/ch/72.mp3",
+    "text": "septante-deux"
+  },
+  {
+    "file": "public/audio/numbers/ch/73.mp3",
+    "text": "septante-trois"
+  },
+  {
+    "file": "public/audio/numbers/ch/74.mp3",
+    "text": "septante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/ch/75.mp3",
+    "text": "septante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/ch/76.mp3",
+    "text": "septante-six"
+  },
+  {
+    "file": "public/audio/numbers/ch/77.mp3",
+    "text": "septante-sept"
+  },
+  {
+    "file": "public/audio/numbers/ch/78.mp3",
+    "text": "septante-huit"
+  },
+  {
+    "file": "public/audio/numbers/ch/79.mp3",
+    "text": "septante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/ch/80.mp3",
+    "text": "huitante"
+  },
+  {
+    "file": "public/audio/numbers/ch/81.mp3",
+    "text": "huitante et un"
+  },
+  {
+    "file": "public/audio/numbers/ch/82.mp3",
+    "text": "huitante-deux"
+  },
+  {
+    "file": "public/audio/numbers/ch/83.mp3",
+    "text": "huitante-trois"
+  },
+  {
+    "file": "public/audio/numbers/ch/84.mp3",
+    "text": "huitante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/ch/85.mp3",
+    "text": "huitante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/ch/86.mp3",
+    "text": "huitante-six"
+  },
+  {
+    "file": "public/audio/numbers/ch/87.mp3",
+    "text": "huitante-sept"
+  },
+  {
+    "file": "public/audio/numbers/ch/88.mp3",
+    "text": "huitante-huit"
+  },
+  {
+    "file": "public/audio/numbers/ch/89.mp3",
+    "text": "huitante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/ch/90.mp3",
+    "text": "nonante"
+  },
+  {
+    "file": "public/audio/numbers/ch/91.mp3",
+    "text": "nonante et un"
+  },
+  {
+    "file": "public/audio/numbers/ch/92.mp3",
+    "text": "nonante-deux"
+  },
+  {
+    "file": "public/audio/numbers/ch/93.mp3",
+    "text": "nonante-trois"
+  },
+  {
+    "file": "public/audio/numbers/ch/94.mp3",
+    "text": "nonante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/ch/95.mp3",
+    "text": "nonante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/ch/96.mp3",
+    "text": "nonante-six"
+  },
+  {
+    "file": "public/audio/numbers/ch/97.mp3",
+    "text": "nonante-sept"
+  },
+  {
+    "file": "public/audio/numbers/ch/98.mp3",
+    "text": "nonante-huit"
+  },
+  {
+    "file": "public/audio/numbers/ch/99.mp3",
+    "text": "nonante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/common/100.mp3",
+    "text": "cent"
+  },
+  {
+    "file": "public/audio/numbers/ch80/70.mp3",
+    "text": "septante"
+  },
+  {
+    "file": "public/audio/numbers/ch80/71.mp3",
+    "text": "septante et un"
+  },
+  {
+    "file": "public/audio/numbers/ch80/72.mp3",
+    "text": "septante-deux"
+  },
+  {
+    "file": "public/audio/numbers/ch80/73.mp3",
+    "text": "septante-trois"
+  },
+  {
+    "file": "public/audio/numbers/ch80/74.mp3",
+    "text": "septante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/ch80/75.mp3",
+    "text": "septante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/ch80/76.mp3",
+    "text": "septante-six"
+  },
+  {
+    "file": "public/audio/numbers/ch80/77.mp3",
+    "text": "septante-sept"
+  },
+  {
+    "file": "public/audio/numbers/ch80/78.mp3",
+    "text": "septante-huit"
+  },
+  {
+    "file": "public/audio/numbers/ch80/79.mp3",
+    "text": "septante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/ch80/80.mp3",
+    "text": "quatre-vingts"
+  },
+  {
+    "file": "public/audio/numbers/ch80/81.mp3",
+    "text": "quatre-vingt-un"
+  },
+  {
+    "file": "public/audio/numbers/ch80/82.mp3",
+    "text": "quatre-vingt-deux"
+  },
+  {
+    "file": "public/audio/numbers/ch80/83.mp3",
+    "text": "quatre-vingt-trois"
+  },
+  {
+    "file": "public/audio/numbers/ch80/84.mp3",
+    "text": "quatre-vingt-quatre"
+  },
+  {
+    "file": "public/audio/numbers/ch80/85.mp3",
+    "text": "quatre-vingt-cinq"
+  },
+  {
+    "file": "public/audio/numbers/ch80/86.mp3",
+    "text": "quatre-vingt-six"
+  },
+  {
+    "file": "public/audio/numbers/ch80/87.mp3",
+    "text": "quatre-vingt-sept"
+  },
+  {
+    "file": "public/audio/numbers/ch80/88.mp3",
+    "text": "quatre-vingt-huit"
+  },
+  {
+    "file": "public/audio/numbers/ch80/89.mp3",
+    "text": "quatre-vingt-neuf"
+  },
+  {
+    "file": "public/audio/numbers/ch80/90.mp3",
+    "text": "nonante"
+  },
+  {
+    "file": "public/audio/numbers/ch80/91.mp3",
+    "text": "nonante et un"
+  },
+  {
+    "file": "public/audio/numbers/ch80/92.mp3",
+    "text": "nonante-deux"
+  },
+  {
+    "file": "public/audio/numbers/ch80/93.mp3",
+    "text": "nonante-trois"
+  },
+  {
+    "file": "public/audio/numbers/ch80/94.mp3",
+    "text": "nonante-quatre"
+  },
+  {
+    "file": "public/audio/numbers/ch80/95.mp3",
+    "text": "nonante-cinq"
+  },
+  {
+    "file": "public/audio/numbers/ch80/96.mp3",
+    "text": "nonante-six"
+  },
+  {
+    "file": "public/audio/numbers/ch80/97.mp3",
+    "text": "nonante-sept"
+  },
+  {
+    "file": "public/audio/numbers/ch80/98.mp3",
+    "text": "nonante-huit"
+  },
+  {
+    "file": "public/audio/numbers/ch80/99.mp3",
+    "text": "nonante-neuf"
+  },
+  {
+    "file": "public/audio/numbers/fr/70.mp3",
+    "text": "soixante-dix"
+  },
+  {
+    "file": "public/audio/numbers/fr/71.mp3",
+    "text": "soixante et onze"
+  },
+  {
+    "file": "public/audio/numbers/fr/72.mp3",
+    "text": "soixante-douze"
+  },
+  {
+    "file": "public/audio/numbers/fr/73.mp3",
+    "text": "soixante-treize"
+  },
+  {
+    "file": "public/audio/numbers/fr/74.mp3",
+    "text": "soixante-quatorze"
+  },
+  {
+    "file": "public/audio/numbers/fr/75.mp3",
+    "text": "soixante-quinze"
+  },
+  {
+    "file": "public/audio/numbers/fr/76.mp3",
+    "text": "soixante-seize"
+  },
+  {
+    "file": "public/audio/numbers/fr/77.mp3",
+    "text": "soixante-dix-sept"
+  },
+  {
+    "file": "public/audio/numbers/fr/78.mp3",
+    "text": "soixante-dix-huit"
+  },
+  {
+    "file": "public/audio/numbers/fr/79.mp3",
+    "text": "soixante-dix-neuf"
+  },
+  {
+    "file": "public/audio/numbers/fr/80.mp3",
+    "text": "quatre-vingts"
+  },
+  {
+    "file": "public/audio/numbers/fr/81.mp3",
+    "text": "quatre-vingt-un"
+  },
+  {
+    "file": "public/audio/numbers/fr/82.mp3",
+    "text": "quatre-vingt-deux"
+  },
+  {
+    "file": "public/audio/numbers/fr/83.mp3",
+    "text": "quatre-vingt-trois"
+  },
+  {
+    "file": "public/audio/numbers/fr/84.mp3",
+    "text": "quatre-vingt-quatre"
+  },
+  {
+    "file": "public/audio/numbers/fr/85.mp3",
+    "text": "quatre-vingt-cinq"
+  },
+  {
+    "file": "public/audio/numbers/fr/86.mp3",
+    "text": "quatre-vingt-six"
+  },
+  {
+    "file": "public/audio/numbers/fr/87.mp3",
+    "text": "quatre-vingt-sept"
+  },
+  {
+    "file": "public/audio/numbers/fr/88.mp3",
+    "text": "quatre-vingt-huit"
+  },
+  {
+    "file": "public/audio/numbers/fr/89.mp3",
+    "text": "quatre-vingt-neuf"
+  },
+  {
+    "file": "public/audio/numbers/fr/90.mp3",
+    "text": "quatre-vingt-dix"
+  },
+  {
+    "file": "public/audio/numbers/fr/91.mp3",
+    "text": "quatre-vingt-onze"
+  },
+  {
+    "file": "public/audio/numbers/fr/92.mp3",
+    "text": "quatre-vingt-douze"
+  },
+  {
+    "file": "public/audio/numbers/fr/93.mp3",
+    "text": "quatre-vingt-treize"
+  },
+  {
+    "file": "public/audio/numbers/fr/94.mp3",
+    "text": "quatre-vingt-quatorze"
+  },
+  {
+    "file": "public/audio/numbers/fr/95.mp3",
+    "text": "quatre-vingt-quinze"
+  },
+  {
+    "file": "public/audio/numbers/fr/96.mp3",
+    "text": "quatre-vingt-seize"
+  },
+  {
+    "file": "public/audio/numbers/fr/97.mp3",
+    "text": "quatre-vingt-dix-sept"
+  },
+  {
+    "file": "public/audio/numbers/fr/98.mp3",
+    "text": "quatre-vingt-dix-huit"
+  },
+  {
+    "file": "public/audio/numbers/fr/99.mp3",
+    "text": "quatre-vingt-dix-neuf"
+  }
+]

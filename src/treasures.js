@@ -7,6 +7,7 @@ export function makeTreasure(game) {
   if (game.phase !== 'complete' || game.colored.length !== game.artwork.zones.length) return null;
   return { id: game.id, artworkId: game.artwork.id, version: game.artwork.version,
     completedAt: new Date().toISOString(),
+    ...(game.mode ? {activity:game.mode,level:game.level,firstTry:game.firstTry,totalQuestions:game.questions.length} : {}),
     colors: Object.fromEntries(game.artwork.zones.map(zone => [zone.id, PALETTE[zone.number].hex])) };
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PALETTE } from './palette.js';
 
-export default function Painting({ art, colored = [], colors, preview = false, onPaint, phase = 'answer', sum, className = '' }) {
+export default function Painting({ art, colored = [], colors, preview = false, onPaint, phase = 'answer', sum, className = '', reveal = false }) {
   const interactive = typeof onPaint === 'function';
   return <svg className={`painting ${className}`} viewBox="0 0 600 510" role={interactive ? 'group' : 'img'} aria-label={`${art.title}${preview ? ', aperçu en couleurs' : ', peinture'}`}>
     <g className="scene-sparkles" fill="none" stroke="#d3c5ba" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -17,10 +17,10 @@ export default function Painting({ art, colored = [], colors, preview = false, o
         aria-disabled={interactive ? !allowed : undefined} data-zone={zone.id} data-number={zone.number}
         className={`paint-zone ${painted ? 'painted' : ''} ${allowed ? 'available' : ''}`}
         onClick={interactive ? activate : undefined} onKeyDown={interactive ? e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } } : undefined}>
-        <path d={zone.d} fill={painted ? (colors?.[zone.id] || PALETTE[zone.number].hex) : '#fffdf8'} stroke="#786880" strokeWidth="2.8" strokeLinejoin="round" strokeLinecap="round"/>
-        {!preview && !colors && !painted && <g className="zone-label" pointerEvents="none" aria-hidden="true"><circle cx={zone.x} cy={zone.y} r="12.5" fill="#fffdf8" fillOpacity=".9"/><text x={zone.x} y={zone.y} dominantBaseline="central" textAnchor="middle">{zone.number}</text></g>}
+        <path d={zone.d} fill={painted ? (colors?.[zone.id] || PALETTE[zone.number].hex) : '#fffdf8'} stroke={reveal&&!painted?'#eee7ee':'#786880'} strokeWidth="2.8" strokeLinejoin="round" strokeLinecap="round"/>
+        {!reveal && !preview && !colors && !painted && <g className="zone-label" pointerEvents="none" aria-hidden="true"><circle cx={zone.x} cy={zone.y} r="12.5" fill="#fffdf8" fillOpacity=".9"/><text x={zone.x} y={zone.y} dominantBaseline="central" textAnchor="middle">{zone.number}</text></g>}
       </g>;
     })}
-    <g fill="none" stroke="#655770" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" aria-hidden="true">{art.details.map((d,i)=><path d={d} key={i}/>)}</g>
+    <g fill="none" stroke={reveal&&colored.length<art.zones.length?'#d6cbd7':'#655770'} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none" aria-hidden="true">{art.details.map((d,i)=><path d={d} key={i}/>)}</g>
   </svg>;
 }

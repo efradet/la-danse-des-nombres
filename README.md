@@ -1,6 +1,18 @@
 # La danse des nombres
 
-Jeu React indépendant pour Elisabeth : cinq coloriages par additions et une grotte au trésor des nombres. Les illustrations SVG de sirène, licorne, château, princesse et dragon sont originales et interactives.
+Jeu React indépendant pour Elisabeth : trois activités, cinq dessins et une grotte au trésor des nombres. Les illustrations SVG de sirène, licorne, château, princesse et dragon sont originales et interactives.
+
+## Les deux jeux de nombres entendus
+
+- **J’écoute et je choisis** : écouter puis reconnaître le nombre parmi quatre grandes cartes différentes.
+- **J’écoute et j’écris** : écouter puis composer le nombre avec le pavé numérique ou le clavier, et valider.
+- Huit nombres par dessin. Chaque réponse correcte révèle une partie du tableau ; les erreurs ne retirent rien et ne font pas avancer. Un bouton « Le nombre suivant » permet de garder son rythme.
+- Le bouton d'écoute peut être utilisé autant de fois que nécessaire ; une écoute plus lente est disponible. Les réponses deviennent actives après une écoute réussie. Un problème audio affiche un message et autorise un nouvel essai.
+- Une fois le dessin terminé, **Mettre dans ma grotte** l'enregistre dans la même collection que les additions. Aucun doublon n'est créé pour la même partie.
+- Les paliers sont 0–19, 0–29, 0–49, 0–69 et 0–100. Deux tableaux avec au moins six réponses sur huit trouvées du premier coup permettent de proposer le palier suivant, séparément pour chaque jeu. Réécouter ne retire pas ce crédit. Cette proposition reste facultative ; aucun compte à rebours ni verrouillage des niveaux.
+- « Réglages avec un adulte » permet de revenir à un palier plus facile ou d'en choisir un autre. La prononciation par défaut est septante/huitante/nonante ; les variantes avec quatre-vingts ou soixante-dix/quatre-vingt-dix sont disponibles. Ce choix est enregistré dans le navigateur quand son stockage fonctionne.
+- Les parties sont conservées pendant les changements de dessin, d'activité et les visites de la grotte. Seuls les tableaux déposés dans la grotte sont conservés après fermeture ou rechargement ; la progression conseillée est calculée à partir de ces trésors.
+- 161 enregistrements de nombres sont livrés avec le jeu (voix synthétique française suisse Ariane). Aucun micro ni synthèse vocale en ligne pendant le jeu. Voir `public/audio/numbers/README.md` pour la régénération.
 
 ## Jouer sur ce PC
 
@@ -37,4 +49,4 @@ npm test
 npm run build
 ```
 
-Les tests couvrent le verrouillage, les saisies invalides, les doubles actions, les sommes jusqu'à 18, la fin des cinq tableaux, les doublons de trésors, les couleurs conservées et les erreurs de stockage.
+Les tests couvrent le verrouillage, les saisies invalides, les doubles actions, les sommes jusqu'à 18, la fin des cinq tableaux, les doublons de trésors, les couleurs conservées et les erreurs de stockage. Les jeux d'écoute ajoutent des tests du tirage 0–100, des quatre choix, des variantes de prononciation, des fichiers MP3, de la progression et des événements audio périmés. Des tests React isolés avec jsdom vérifient le pavé, les erreurs, une partie complète, l'ajout à la grotte, la conservation après remontage, la navigation et le focus clavier. Ils simulent la fin de lecture audio ; ils ne certifient pas le rendu sonore ou visuel d'un navigateur réel.
