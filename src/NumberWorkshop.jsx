@@ -6,6 +6,7 @@ import { LEVELS, DIALECTS, createListeningGame, hearQuestion, answerListening, a
 import Painting from './Painting.jsx';
 import { makeTreasure } from './treasures.js';
 import './listening.css';
+import { assetUrl } from './asset-url.js';
 
 const SETTINGS_KEY='la-danse-des-nombres.listening-settings.v1';
 function savedDialect(){try{const value=localStorage.getItem(SETTINGS_KEY);return DIALECTS[value]?value:'ch';}catch{return 'ch';}}
@@ -52,7 +53,7 @@ export default function NumberWorkshop({ mode, visible, treasures, onTreasure, o
     if(!visible||!current||current.phase!=='answer')return;
     stopAudio();setAudioError('');setAudioState('playing');
     const generation=audioGeneration.current,questionId=current.question.id,targetKey=key;
-    const clip=new Audio(numberAudioPath(current.question.target,dialect));audioRef.current=clip;
+    const clip=new Audio(assetUrl(numberAudioPath(current.question.target,dialect)));audioRef.current=clip;
     clip.playbackRate=slow?0.82:1;
     const stillCurrent=()=>generation===audioGeneration.current&&currentKey.current===targetKey&&currentVisible.current;
     const failed=()=>{if(stillCurrent()){setAudioState('idle');setAudioError('Le son n’a pas pu être lu. Vérifie le volume, puis appuie sur Réécouter.');}};
