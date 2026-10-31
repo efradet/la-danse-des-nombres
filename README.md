@@ -54,3 +54,7 @@ Les tests couvrent le verrouillage, les saisies invalides, les doubles actions, 
 ## Dessins surprises
 
 Chaque thème propose trois dessins différents, soit quinze tableaux dans les trois jeux. Un dessin est tiré au hasard au début de chaque partie. Rejouer propose une autre variante du même thème, sans répétition immédiate. Naviguer conserve le dessin et la progression en cours. La grotte retrouve la version exacte, y compris les anciens tableaux.
+
+## Publier sur GitHub Pages
+
+`.github/workflows/pages.yml` installe les dépendances, lance `npm test`, construit le site et publie le dossier `dist` à chaque envoi sur `main`. Une seule fois dans le dépôt : **Settings > Pages > Source : GitHub Actions**. Le jeu est ensuite disponible sur `https://efradet.github.io/la-danse-des-nombres/`. Le site utilise des chemins relatifs (`base: './'`) et les enregistrements des nombres passent par `assetUrl()` : il fonctionne aussi en local.
